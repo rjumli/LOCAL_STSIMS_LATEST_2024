@@ -24,6 +24,32 @@
                     </Link>
                 </li>
                 <li class="nav-item">
+                    <b-link class="nav-link menu-link" :class="{'active': $page.component.startsWith('Modules/Scholars') }" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebar1">
+                        <i class="ri-team-fill"></i>
+                        <span data-key="t-dashboards">Scholars</span>
+                    </b-link>
+                    <div class="collapse menu-dropdown" id="sidebar1">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Scholars/Lists') }" href="/scholars/listing">
+                                    <span data-key="t-dashboards">Lists</span>
+                                </Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Scholars/Qualifiers') }" href="/scholars/qualifiers">
+                                    <span data-key="t-dashboards">Qualifiers</span>
+                                </Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Scholars/Deferments') }" href="/scholars/deferments">
+                                    <span data-key="t-dashboards">Deferments</span>
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <b-link class="nav-link menu-link" :class="{'active': $page.component.startsWith('Modules/Staffs') }" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebar1">
                         <i class="bx bx-user-circle"></i>

@@ -8,10 +8,10 @@ use App\Services\Scholar\ApiService;
 use App\Services\Scholar\ViewService;
 use App\Services\Scholar\TruncateService;
 
-class IndexController extends Controller
+class ListController extends Controller
 {
     public $api, $view, $truncate;
-
+    
     public function __construct(ApiService $api, ViewService $view, TruncateService $truncate)
     {
         $this->api = $api;
@@ -20,10 +20,10 @@ class IndexController extends Controller
     }
 
     public function index(Request $request){
-        $type = $request->type;
-        switch($type){
+        $option = $request->option;
+        switch($option){
             case 'lists':
-               return $this->view->lists($request);
+                return $this->view->lists($request);
             break;
             case 'statistics':
                 return $this->statistics($request);
