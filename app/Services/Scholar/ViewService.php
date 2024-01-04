@@ -41,15 +41,19 @@ class ViewService
                 if(!empty($filter)){
                     (property_exists($filter, 'school')) ? $query->where('school_id',$filter->school) : '';
                     (property_exists($filter, 'course')) ? $query->where('course_id',$filter->course) : '';
+                    (property_exists($filter, 'level')) ? $query->where('level_id',$filter->level) : '';
                 }
             })
             ->where(function ($query) use ($info,$filter) {
-                ($info->program == null) ? '' : $query->where('program_id',$info->program);
-                // ($filter != null) ? ($filter->subprogram == null) ? '' : $query->where('subprogram_id',$filter->subprogram) : '';
-                ($info->category == null) ? '' : $query->where('category_id',$info->category);
-                ($info->status == null) ? '' : $query->where('status_id',$info->status);
-                ($info->year == null) ? '' : $query->where('awarded_year',$info->year);
-                ($info->type == null) ? '' : $query->where('is_undergrad',$info->type);
+                if(!empty($filter)){
+                    (property_exists($filter, 'program')) ? $query->where('program_id',$filter->program) : '';
+                    (property_exists($filter, 'subprogram')) ? $query->where('subprogram_id',$filter->subprogram) : '';
+                    
+                    ($info->category == null) ? '' : $query->where('category_id',$info->category);
+                    ($info->status == null) ? '' : $query->where('status_id',$info->status);
+                    ($info->year == null) ? '' : $query->where('awarded_year',$info->year);
+                    ($info->type == null) ? '' : $query->where('is_undergrad',$info->type);
+                }
              })
             ->orderBy('awarded_year',$info->sort)
             ->paginate($info->counts)

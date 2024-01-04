@@ -1,38 +1,41 @@
 <template>
     <b-modal v-model="showModal" hide-footer class="v-modal-custom" modal-class="zoomIn" fullscreen>
         <template v-slot:header>
+            <div style="border-bottom: 1px solid #ccc; width: 100%;">
+                
+            <i @click="showModal=false" class="ri-close-circle-fill float-end" style="cursor:pointer; font-size: 40px;"></i>
             <b-row class="mb-3 mt-n1">
                 <b-col md>
-                  <b-row class="align-items-center g-3">
-                    <b-col md="auto">
-                        <b-img class="img-thumbnail rounded-circle" style="width: 60px; height: 60px;" alt="img" src="/imagess/avatars/avatar.jpg" data-holder-rendered="true"></b-img>
-                    </b-col>
-                    <b-col md>
-                        <div>
-                            <h5 class="fw-semibold">{{user.profile.name}}</h5>
-                            <div class="hstack gap-3 flex-wrap">
-                                <div class="text-muted">Spas ID :
-                                    <span class="text-body fw-medium">{{user.spas_id}}</span>
-                                </div>
-                                <div class="vr"></div>
-                                <div class="text-muted">Program : 
-                                    <span class="text-body fw-medium">{{user.program}}</span>
-                                </div>
-                                <div class="vr"></div>
-                                <div class="text-muted">Subprogram : 
-                                    <span class="text-body fw-medium">{{user.subprogram}}</span>
-                                </div>
-                                <div class="vr"></div>
-                                <div class="text-muted">Awarded Year : 
-                                    <span class="text-body fw-medium">{{user.awarded_year}}</span>
+                    <b-row class="align-items-center g-3">
+                        <b-col md="auto">
+                            <b-img class="img-thumbnail rounded-circle" style="width: 60px; height: 60px;" alt="img" src="/imagess/avatars/avatar.jpg" data-holder-rendered="true"></b-img>
+                        </b-col>
+                        <b-col md>
+                            <div>
+                                <h5 class="fw-semibold">{{user.profile.name}}</h5>
+                                <div class="hstack gap-3 flex-wrap">
+                                    <div class="text-muted">Spas ID :
+                                        <span class="text-body fw-medium">{{user.spas_id}}</span>
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="text-muted">Program : 
+                                        <span class="text-body fw-medium">{{user.program}}</span>
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="text-muted">Subprogram : 
+                                        <span class="text-body fw-medium">{{user.subprogram}}</span>
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="text-muted">Awarded Year : 
+                                        <span class="text-body fw-medium">{{user.awarded_year}}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </b-col>
-                  </b-row>
+                        </b-col>
+                    </b-row>
                 </b-col>
-              </b-row>
-            <i @click="showModal=false" class="ri-close-circle-fill float-end" style="cursor:pointer; font-size: 40px; margin-top: -37px; margin-bottom: -20px;"></i>
+            </b-row>
+            </div>
         </template>
         <div class="row">
             <div class="col-md-3 mt-n3">
@@ -245,12 +248,12 @@
                         <div class="p-2 border border-dashed rounded">
                             <div class="d-flex align-items-center">
                                 <div class="avatar-sm me-2">
-                                    <div class="avatar-title rounded bg-transparent text-primary fs-24"><i class="ri-stack-fill"></i>
+                                    <div class="avatar-title rounded bg-transparent text-primary fs-24"><i class="ri-bank-card-2-fill"></i>
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <p class="text-muted fs-11 mb-1">GWA :</p>
-                                    <h5 class="fs-13 mb-0">1.2</h5>
+                                    <p class="text-muted fs-11 mb-1">Account No.:</p>
+                                    <h5 class="fs-13 mb-0">{{user.profile.account_no}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -325,8 +328,3 @@ export default {
     }
 }
 </script>
-<style>
-.modal-header { 
-    border-bottom: 1px solid #ccc;
-}
-</style>

@@ -20,6 +20,15 @@
                         </div>
                     </div>
                     <hr class="text-muted border-dashed"/>
+                    <div class="mt-n2">
+                        <div class="form" :class="(form.errors) ? (form.errors.course_id) ? 'text-danger' : '' : ''">
+                            <label>Status</label>
+                            <Multiselect class="form-control"
+                            placeholder="Select Status" label="name" trackBy="name"
+                            v-model="status" :close-on-select="true" 
+                            :searchable="false" :options="status_list"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </b-form>
@@ -31,14 +40,24 @@
     </b-modal>
 </template>
 <script>
+import Multiselect from "@vueform/multiselect";
+import "@vueform/multiselect/themes/default.css";
 export default {
+    components : { Multiselect },
+    props: ['statuses'],
     data(){
         return {
             currentUrl: window.location.origin,
             showModal: false,
             selected: { profile:{} },
+            status: '',
             form: {},
             type: ''
+        }
+    },
+    computed: {
+        status_list : function() {
+            return this.statuses.filter(x => x.type == 'Progress' || x.type == 'Ongoing');
         }
     },
     methods : {

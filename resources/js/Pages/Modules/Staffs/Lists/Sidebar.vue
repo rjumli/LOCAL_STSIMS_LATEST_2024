@@ -35,7 +35,6 @@
                     <span class="text-danger fw-semibold fs-12">{{statistics[2]}}</span>
                 </div>
             </div>
-            {{statistics[3]}}
         </div>
         <hr class="text-muted"/>
         <div class="table-responsive mt-2">

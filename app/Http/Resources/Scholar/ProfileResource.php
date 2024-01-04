@@ -21,7 +21,8 @@ class ProfileResource extends JsonResource
             'suffix' => $this->suffix,
             'sex' => $this->sex,
             'birthday' => ($this->birthday == null) ? '' : $this->birthday,
-            'contact_no' => ($this->contact_no == null) ? 'n/a' : $this->contact_no
+            'contact_no' => ($this->contact_no == null) ? '-' : $this->contact_no,
+            'account_no' => ($this->account_no == null) ? '-' : $this->account_no
         ];
     }
 }

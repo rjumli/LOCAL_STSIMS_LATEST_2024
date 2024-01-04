@@ -21,8 +21,11 @@
                 <span @click="refresh" class="input-group-text" v-b-tooltip.hover title="Refresh" style="cursor: pointer;"> 
                     <i class="bx bx-refresh search-icon"></i>
                 </span>
-                 <span @click="filter" class="input-group-text" v-b-tooltip.hover title="Filter" style="cursor: pointer;"> 
+                <span @click="openFilter" class="input-group-text" v-b-tooltip.hover title="Filter" style="cursor: pointer;"> 
                     <i class="ri-filter-fill search-icon"></i>
+                </span>
+                 <span @click="openExport" class="input-group-text" v-b-tooltip.hover title="Export" style="cursor: pointer;"> 
+                    <i class="ri-file-excel-2-fill search-icon"></i>
                 </span>
                 <b-button type="button" variant="primary" @click="openCreate">
                     <i class="ri-add-circle-fill align-bottom me-1"></i> Create
@@ -55,7 +58,7 @@
                     </td>
                     <td>
                         <h5 class="fs-12 mb-0 fw-semibold">{{user.profile.name}}</h5>
-                        <p class="fs-11 text-muted mb-0">{{user.spas_id}} / {{user.account_no}}</p>
+                        <p class="fs-11 text-muted mb-0">{{(user.spas_id) ? user.spas_id : user.stsims_id}} / {{user.profile.account_no}}</p>
                     </td>
                     <td class="fs-12 text-center">{{user.program}}</td>
                     <td class="fs-12 text-center">{{user.awarded_year}}</td>
@@ -82,16 +85,19 @@
         <Pagination class="ms-2 me-2" v-if="meta" @fetch="fetch" :lists="lists.length" :links="links" :pagination="meta" />
     </div>
     <View ref="view"/>
-    <Create ref="create"/>
-    <Update ref="update"/>
+    <Create :regions="regions" :statuses="statuses" :dropdowns="dropdowns" :program_list="program_list" :subprogram_list="subprogram_list" ref="create"/>
+    <Update :statuses="statuses" ref="update"/>
+    <Filter :regions="regions" :dropdowns="dropdowns" :programs="program_list" :subprograms="subprogram_list" @status="subfilter" ref="filter"/>
 </template>
 <script>
 import View from './Modals/Buttons/View.vue';
 import Update from './Modals/Buttons/Update.vue';
 import Create from './Modals/Buttons/Create.vue';
+import Filter from './Modals/Buttons/Filter.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components : { Pagination, Create, Update, View },
+    props: ['regions','dropdowns','program_list','subprogram_list','statuses'],
+    components : { Pagination, Create, Update, View, Filter },
     data(){
         return {
             currentUrl: window.location.origin,
@@ -168,7 +174,16 @@ export default {
             this.flag = type;
             this.index = index;
             this.$refs.update.set(data,type);
-        }
+        },
+        openFilter(){
+            this.$refs.filter.show();
+        },
+        openExport(){},
+        subfilter(list){
+            this.subfilters = list;
+            this.subfilters = (Object.keys(this.subfilters).length == 0) ? '-' : JSON.stringify(this.subfilters);
+            this.fetch();
+        },
     }
 }
 </script>

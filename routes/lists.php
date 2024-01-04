@@ -13,7 +13,8 @@ Route::prefix('lists')->group(function(){
 
         Route::prefix('search')->group(function(){
             Route::post('/schools', 'schools');
-            Route::post('/courses', 'courses');
+            Route::post('/courses', 'course_list');
+            Route::get('/courses/{id}', 'courses');
             Route::post('/scholars', 'scholars');
         });
     });

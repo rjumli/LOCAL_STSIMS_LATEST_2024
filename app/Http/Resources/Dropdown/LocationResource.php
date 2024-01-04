@@ -12,7 +12,9 @@ class LocationResource extends JsonResource
         return [
             'value' => $this->code, 
             'name' => $this->name,
-            'region' => $this->region
+            'region' => $this->region,
+            'old_name' => $this->old_name,
+            'district' => $this->district
         ];
     }
 }

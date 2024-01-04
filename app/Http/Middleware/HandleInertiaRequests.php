@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Inertia\Middleware;
 use App\Http\Resources\Dropdown\ListResource;
 use App\Http\Resources\Dropdown\LocationResource;
+use App\Http\Resources\Dropdown\ProgramResource;
+use App\Http\Resources\Dropdown\StatusResource;
 use App\Http\Resources\Staff\IndexResource as StaffResource;
 
 class HandleInertiaRequests extends Middleware
@@ -56,8 +58,8 @@ class HandleInertiaRequests extends Middleware
             ],
             'regions' => LocationResource::collection(LocationRegion::all()),
             'dropdowns' => ListResource::collection(ListDropdown::all()),
-            'programs' => ListProgram::all(),
-            'statuses' => ListStatus::all(),
+            'programs' => ProgramResource::collection(ListProgram::all()),
+            'statuses' => StatusResource::collection(ListStatus::all()),
             'privileges' => ListPrivilege::all(),
             'agencies' => ListAgency::all(),
         ]);
